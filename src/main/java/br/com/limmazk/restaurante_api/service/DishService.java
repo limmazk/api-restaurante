@@ -7,7 +7,6 @@ import br.com.limmazk.restaurante_api.repository.DishRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DishService {
@@ -19,11 +18,9 @@ public class DishService {
     }
 
     public List<DishResponseDTO> getAll() {
-
         List<Dish> dishes = dishRepository.findAll();
 
-        return dishRepository.findAll()
-                .stream()
+        return dishes.stream()
                 .map(DishMapper::toResponseDTO)
                 .toList();
     }
