@@ -1,5 +1,6 @@
 package br.com.limmazk.restaurante_api.model;
 
+import br.com.limmazk.restaurante_api.enums.DishCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class Dish {
     private String name;
     private BigDecimal price;
     private Integer preparationTime;
-    private String category;
+    private DishCategory category;
     private Boolean available;
 
     @OneToMany(mappedBy = "dish")

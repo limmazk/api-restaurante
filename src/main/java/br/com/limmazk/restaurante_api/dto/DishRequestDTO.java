@@ -8,11 +8,12 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public record DishRequestDTO(
-        @NotBlank
-        String description,
 
         @NotBlank
         String name,
+
+        @NotBlank
+        String description,
 
         @NotNull @Positive
         BigDecimal price,
