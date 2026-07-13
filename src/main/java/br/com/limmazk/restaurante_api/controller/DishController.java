@@ -47,4 +47,10 @@ public class DishController {
         dishService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DishResponseDTO> update(@PathVariable UUID id, @RequestBody @Valid DishRequestDTO dto){
+        return ResponseEntity.ok(dishService.update(id, dto));
+    }
+
 }
