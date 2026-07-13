@@ -1,3 +1,14 @@
 spring:
-  application:
-    name: restaurante-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restaurant_api
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
