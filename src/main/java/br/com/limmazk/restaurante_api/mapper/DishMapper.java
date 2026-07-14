@@ -31,4 +31,13 @@ public class DishMapper {
                 dish.getAvailable()
         );
     }
+
+    public static void updateEntity(DishRequestDTO dto, Dish dish){
+        dish.setName(dto.name());
+        dish.setDescription(dto.description());
+        dish.setPrice(dto.price());
+        dish.setPreparationTime(dto.preparationTime());
+        dish.setCategory(dto.category());
+        dish.setAvailable(dto.available());
+    }
 }

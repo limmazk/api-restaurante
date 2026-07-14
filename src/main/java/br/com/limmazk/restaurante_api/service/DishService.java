@@ -44,15 +44,8 @@ public class DishService {
         Dish dish = dishRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("ID not found."));
 
-        dish.setName(dto.name());
-        dish.setDescription(dto.description());
-        dish.setPrice(dto.price());
-        dish.setPreparationTime(dto.preparationTime());
-        dish.setCategory(dto.category());
-        dish.setAvailable(dto.available());
-
+        DishMapper.updateEntity(dto, dish);
         dishRepository.save(dish);
-
         return DishMapper.toResponseDTO(dish);
     }
 
