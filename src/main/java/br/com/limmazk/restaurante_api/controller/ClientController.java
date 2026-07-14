@@ -26,7 +26,7 @@ public class ClientController {
         return ResponseEntity.ok(clientService.getAll());
     }
 
-    @GetMapping("/clients/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> getById(@PathVariable UUID id){
         return ResponseEntity.ok(clientService.getById(id));
     }
@@ -38,8 +38,14 @@ public class ClientController {
                 .body(clientService.create(dto));
     }
 
-    @PutMapping("/clients/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> update(@PathVariable UUID id, @RequestBody @Valid ClientRequestDTO dto){
         return ResponseEntity.ok(clientService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id){
+        clientService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

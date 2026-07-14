@@ -1,7 +1,12 @@
 package br.com.limmazk.restaurante_api.enums;
 
 public enum OrderStatus {
-    READY,
+
+    PENDING,
     PREPARING,
-    CANCELLED
+    READY,
+    OUT_FOR_DELIVERY,
+    DELIVERED,
+    CANCELED
+
 }

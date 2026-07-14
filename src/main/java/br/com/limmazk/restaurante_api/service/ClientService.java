@@ -45,8 +45,8 @@ public class ClientService {
                 .orElseThrow(() -> new ResourceNotFoundException("Client not found."));
 
         ClientMapper.updateEntity(dto, client);
-        clientRepository.save(client);
-        return ClientMapper.toResponseDTO(client);
+        Client clientUpdate = clientRepository.save(client);
+        return ClientMapper.toResponseDTO(clientUpdate);
     }
 
     public void delete(UUID id){
