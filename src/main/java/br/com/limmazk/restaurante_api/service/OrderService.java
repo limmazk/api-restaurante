@@ -1,8 +1,6 @@
 package br.com.limmazk.restaurante_api.service;
 
-import br.com.limmazk.restaurante_api.dto.OrderItemRequestDTO;
-import br.com.limmazk.restaurante_api.dto.OrderRequestDTO;
-import br.com.limmazk.restaurante_api.dto.OrderResponseDTO;
+import br.com.limmazk.restaurante_api.dto.*;
 import br.com.limmazk.restaurante_api.enums.OrderStatus;
 import br.com.limmazk.restaurante_api.exception.ResourceNotFoundException;
 import br.com.limmazk.restaurante_api.mapper.OrderMapper;
@@ -20,6 +18,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -76,6 +75,30 @@ public class OrderService {
 
         order.setItems(orderItems);
         order.setTotalPrice(total);
+
+        Order orderSaved = orderRepository.save(order);
+
+        return OrderMapper.toResponseDTO(orderSaved);
+    }
+
+    public List<OrderResponseDTO> getAll(){
+        List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+                .map(OrderMapper::toResponseDTO)
+                .toList();
+    }
+
+    public OrderResponseDTO getById(UUID id){
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found."));
+        return OrderMapper.toResponseDTO(order);
+    }
+
+    public OrderResponseDTO update(UUID id, OrderStatusRequestDTO dto){
+        Order order = orderRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Order not found."));
+
+        order.setStatus(dto.status());
 
         Order orderSaved = orderRepository.save(order);
 

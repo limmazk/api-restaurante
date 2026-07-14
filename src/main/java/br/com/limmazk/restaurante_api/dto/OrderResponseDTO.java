@@ -4,6 +4,7 @@ import br.com.limmazk.restaurante_api.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public record OrderResponseDTO(
@@ -12,7 +13,7 @@ public record OrderResponseDTO(
         OrderStatus status,
         LocalDateTime createdAt,
         BigDecimal totalPrice,
-        UUID clientId
-
+        UUID clientId,
+        List<OrderItemResponseDTO> items
 ) {
 }
