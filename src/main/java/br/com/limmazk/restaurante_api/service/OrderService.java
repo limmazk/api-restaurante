@@ -94,7 +94,7 @@ public class OrderService {
         return OrderMapper.toResponseDTO(order);
     }
 
-    public OrderResponseDTO update(UUID id, OrderStatusRequestDTO dto){
+    public OrderResponseDTO updateStatus(UUID id, OrderStatusRequestDTO dto){
         Order order = orderRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Order not found."));
 
@@ -103,5 +103,11 @@ public class OrderService {
         Order orderSaved = orderRepository.save(order);
 
         return OrderMapper.toResponseDTO(orderSaved);
+    }
+
+    public void delete(UUID id){
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found."));
+        orderRepository.delete(order);
     }
 }
