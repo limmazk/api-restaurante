@@ -17,4 +17,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handlePaymentAlreadyExistsException(PaymentAlreadyExistsException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
+
+    @ExceptionHandler(DeliveryAlreadyExistsException.class)
+    public ResponseEntity<String> handleDeliveryAlreadyExistsException(
+            DeliveryAlreadyExistsException ex) {
+
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
+    }
 }

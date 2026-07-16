@@ -38,7 +38,9 @@ public class Order {
             orphanRemoval = true)
     private List<OrderItem> items;
 
-
     @OneToOne(mappedBy = "order")
     private Payment payment;
+
+    @OneToOne(mappedBy = "order")
+    private Delivery delivery;
 }
