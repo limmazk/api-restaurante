@@ -13,7 +13,7 @@ public record ClientRequestDTO(
         @Email
         String email,
 
-        @NotNull
+        @NotBlank
         String address,
 
         @Pattern(
